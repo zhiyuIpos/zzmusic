@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const ERR_OK = 0
-const baseURL = process.env.NODE_ENV === 'production' ? 'http://101.34.48.243:80' : '/'
+const baseURL = process.env.NODE_ENV === 'production' ? 'http://101.34.48.243/music/' : '/'
 
 axios.defaults.baseURL = baseURL
 
