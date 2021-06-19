@@ -3,6 +3,7 @@
     class="index-list"
     :probe-type="3"
     @scroll="onScroll"
+    ref="scrollRef"
   >
     <ul ref="groupRef">
       <li
@@ -52,8 +53,9 @@
 </template>
 
 <script>
-import Scroll from '@/components/base/scroll/scroll'
+import Scroll from '@/components/wrap-scroll/wrap-scroll'
 import useFixed from './use-fixed'
+import useShortcut from './use-shortcut'
 export default {
   name: 'index-list',
   components: { Scroll },
@@ -65,19 +67,37 @@ export default {
       }
     }
   },
-  setup (props) {
+  emits: ['select'],
+  setup (props, { emit }) {
     const {
       groupRef,
       onScroll,
       fixedTitle,
-      fixedStyle
+      fixedStyle,
+      currentIndex
     } = useFixed(props)
+    const {
+      shortcutList,
+      onShortcutTouchStart,
+      onShortcutTouchMove,
+      scrollRef
+    } = useShortcut(props, groupRef)
+
+    function onItemClick (item) {
+      emit('select', item)
+    }
     console.log(fixedTitle, '***fixedTitle')
     return {
       groupRef,
-      onScroll,
+      scrollRef,
       fixedTitle,
-      fixedStyle
+      fixedStyle,
+      currentIndex,
+      shortcutList,
+      onScroll,
+      onShortcutTouchStart,
+      onShortcutTouchMove,
+      onItemClick
     }
   }
 }

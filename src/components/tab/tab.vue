@@ -17,8 +17,8 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name:'tab',
-  setup() {
+  name: 'tab',
+  setup () {
     const tabs = [
       {
         name: '推荐',
@@ -40,7 +40,7 @@ export default defineComponent({
     return {
       tabs
     }
-  },
+  }
 })
 </script>
 

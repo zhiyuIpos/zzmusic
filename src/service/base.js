@@ -1,11 +1,11 @@
 import axios from 'axios'
 
 const ERR_OK = 0
-const baseURL = '/'
+const baseURL = process.env.NODE_ENV === 'production' ? 'http://101.34.48.243:80' : '/'
 
 axios.defaults.baseURL = baseURL
 
-export function get(url, params) {
+export function get (url, params) {
   return axios.get(url, {
     params
   }).then((res) => {

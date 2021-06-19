@@ -21,7 +21,6 @@ export default function useSlider (wrapperRef) {
     })
 
     sliderVal.on('slideWillChange', (page) => {
-      console.log(page, 'page***')
       currentPageIndex.value = page.pageX
     })
   })
@@ -30,13 +29,14 @@ export default function useSlider (wrapperRef) {
     slider.value.destroy()
   })
 
+  // keep-alive 的钩子函数触发
   onActivated(() => {
-    // slider.value.enable()
-    // slider.value.refresh()
+    slider.value.enable()
+    slider.value.refresh()
   })
 
   onDeactivated(() => {
-    // slider.value.disable()
+    slider.value.disable() // 禁用
   })
 
   return {

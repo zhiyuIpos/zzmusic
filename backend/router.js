@@ -491,7 +491,7 @@ function registerAlbum(app) {
       if (data.code === ERR_OK) {
         const list = data.req_0.data.songlist
         const songList = handleSongList(list)
-
+        console.log(songList, '****songList')
         res.json({
           code: ERR_OK,
           result: {

@@ -2,6 +2,9 @@
   <div class="header">
     <span class="icon"></span>
     <h1 class="text">zz music</h1>
+    <router-link class="mine" to="/user">
+      <i class="icon-mine"></i>
+    </router-link>
   </div>
 </template>
 
@@ -24,7 +27,7 @@ export default {
     width: 30px;
     height: 32px;
     margin-right: 9px;
-    @include bg-image('logo');
+    @include bg-image('fox');
     background-size: 30px 32px;
   }
   .text {
@@ -32,6 +35,17 @@ export default {
     vertical-align: top;
     line-height: 44px;
     font-size: $font-size-large;
+  }
+  .mine {
+    position: absolute;
+    top: 0;
+    right: 0;
+    .icon-mine {
+      display: block;
+      padding: 12px;
+      font-size: $font-size-large-x;
+      color: $color-theme;
+    }
   }
 }
 </style>

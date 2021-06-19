@@ -1,6 +1,6 @@
 import BScroll from '@better-scroll/core'
 import ObserveDOM from '@better-scroll/observe-dom'
-import { onMounted, onUnmounted, ref } from 'vue'
+import { onActivated, onDeactivated, onMounted, onUnmounted, ref } from 'vue'
 
 BScroll.use(ObserveDOM)
 export default function useScroll (wrapperRef, options, emit) {
@@ -17,8 +17,19 @@ export default function useScroll (wrapperRef, options, emit) {
       })
     }
   })
+  // 如果使用使用了keep-alive， 不会触发这个钩子函数
   onUnmounted(() => {
     scroll.value.destroy()
+  })
+
+  // keep-alive 的钩子函数触发
+  onActivated(() => {
+    scroll.value.enable()
+    scroll.value.refresh()
+  })
+
+  onDeactivated(() => {
+    scroll.value.disable() // 禁用
   })
   return scroll
 }
